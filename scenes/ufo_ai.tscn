@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://hlko17bodmr8"]
+
+[ext_resource type="Script" path="res://scripts/ufo_ai.gd" id="1_5x6nw"]
+[ext_resource type="Texture2D" uid="uid://h7f5afsa37cb" path="res://assets/textures/enemyShip.png" id="2_ocw0y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_el8du"]
+radius = 29.0
+
+[node name="UFO_AI" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_5x6nw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_ocw0y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_el8du")
+
+[node name="enemyMuzzle" type="Node2D" parent="."]
+position = Vector2(0, -34)

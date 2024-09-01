@@ -1,0 +1,6 @@
+res://scenes/game.tscn
+res://scenes/ufo_ai.tscn
+res://scripts/ufo_ai.gd
+res://scenes/enemy_laser.tscn
+res://scripts/enemy_laser.gd
+res://scripts/game.gd

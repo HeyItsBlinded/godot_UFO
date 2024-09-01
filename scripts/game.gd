@@ -8,6 +8,13 @@ extends Node2D
 @onready var player_spawn_pos = $PlayerSpawnPos
 @onready var player_spawn_area = $PlayerSpawnPos/PlayerSpawnArea
 
+@onready var enemyLaser = $Lasers
+@onready var enemyUFO = $UFO_AI
+
+#func _ready():
+	#enemyUFO.connect("laser_shot", _on_player_laser_shot)
+	#lasers.add_child(laser)
+
 var asteroid_scene = preload("res://scenes/asteroid.tscn")
 
 var score := 0:
@@ -26,6 +33,9 @@ func _ready():
 	lives = 3
 	player.connect("laser_shot", _on_player_laser_shot)
 	player.connect("died", _on_player_died)
+	
+	enemyUFO.connect("laser_shot", _on_player_laser_shot)
+	lasers.add_child(enemyLaser)
 	
 	for asteroid in asteroids.get_children():
 		asteroid.connect("exploded", _on_asteroid_exploded)
