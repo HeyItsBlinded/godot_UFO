@@ -63,3 +63,6 @@ func _on_body_entered(body):
 	if body is Player:
 		var player = body
 		player.die()
+	elif body is AI:
+		var ai = body
+		ai.die()

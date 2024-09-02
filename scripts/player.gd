@@ -51,6 +51,7 @@ func _physics_process(delta):
 		global_position.y = screen_size.y
 	elif global_position.y > screen_size.y:
 		global_position.y = 0
+		
 	if global_position.x < 0:
 		global_position.x = screen_size.x
 	elif global_position.x > screen_size.x:
@@ -69,7 +70,6 @@ func die():
 		cshape.set_deferred("disabled", true)
 		emit_signal("died")
 		
-
 func respawn(pos):
 	if alive==false:
 		alive = true
