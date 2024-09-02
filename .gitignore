@@ -2,3 +2,4 @@
 .DS_Store
 /.godot
 *.png.import
+*.ttf.import
