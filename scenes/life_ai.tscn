@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8i7yg648s3e0"]
+
+[ext_resource type="Texture2D" uid="uid://ds5c4sv7qcyrv" path="res://assets/textures/ai_life.png" id="1_fod4r"]
+
+[node name="UILife" type="TextureRect"]
+offset_right = 33.0
+offset_bottom = 26.0
+texture = ExtResource("1_fod4r")

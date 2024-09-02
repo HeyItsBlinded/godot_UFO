@@ -3,7 +3,7 @@ extends Node2D
 @onready var lasers = $Lasers
 
 @onready var player = $Player
-@onready var ai = $UFO_AI
+@onready var ai = $AI
 @onready var asteroids = $Asteroids
 @onready var hud = $UI/HUD
 @onready var game_over_screen = $UI/GameOverScreen
@@ -22,12 +22,12 @@ var score := 0:
 var lives_player: int:
 	set(value):
 		lives_player = value
-		hud.init_lives(lives_player)
+		hud.update_player_lives(lives_player)
 
 var lives_ai: int:
 	set(value):
 		lives_ai = value
-		hud.init_lives(lives_ai)
+		hud.update_ai_lives(lives_ai)
 
 func _ready():
 	game_over_screen.visible = false

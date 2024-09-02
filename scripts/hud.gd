@@ -4,13 +4,23 @@ extends Control
 	set(value):
 		score.text = "SCORE: " + str(value)
 
-var uilife_scene = preload("res://scenes/ui_life.tscn")
+var player_life_scene = preload("res://scenes/life_player.tscn")
+var ai_life_scene = preload("res://scenes/life_ai.tscn")
 
-@onready var lives = $Lives
+@onready var player_lives = $PlayerLives
+@onready var ai_lives = $AILives
 
-func init_lives(amount):
-	for ul in lives.get_children():
+func update_player_lives(amount):
+	for ul in player_lives.get_children():
 		ul.queue_free()
 	for i in amount:
-		var ul = uilife_scene.instantiate()
-		lives.add_child(ul)
+		var life = player_life_scene.instantiate()
+		player_lives.add_child(life)
+
+
+func update_ai_lives(amount):
+	for ul in ai_lives.get_children():
+		ul.queue_free()
+	for i in amount:
+		var life = ai_life_scene.instantiate()
+		ai_lives.add_child(life)
