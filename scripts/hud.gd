@@ -17,7 +17,6 @@ func update_player_lives(amount):
 		var life = player_life_scene.instantiate()
 		player_lives.add_child(life)
 
-
 func update_ai_lives(amount):
 	for ul in ai_lives.get_children():
 		ul.queue_free()

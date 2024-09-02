@@ -2,11 +2,10 @@ class_name Asteroid extends Area2D
 
 signal exploded(pos, size, points)
 
-var movement_vector := Vector2(0, -1)
-
 enum AsteroidSize{LARGE, MEDIUM, SMALL}
 @export var size := AsteroidSize.LARGE
 
+var movement_vector := Vector2(0, -1)
 var speed := 200
 
 @onready var sprite = $Sprite2D
@@ -15,11 +14,11 @@ var speed := 200
 var points: int:
 	get:
 		match size:
-			AsteroidSize.LARGE:
+			AsteroidSize.SMALL:
 				return 100
 			AsteroidSize.MEDIUM:
 				return 50
-			AsteroidSize.SMALL:
+			AsteroidSize.LARGE:
 				return 25
 			_:
 				return 0

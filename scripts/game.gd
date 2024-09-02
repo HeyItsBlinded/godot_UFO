@@ -40,6 +40,7 @@ func _ready():
 	ai.connect("laser_shot", _on_laser_shot)
 	ai.connect("died", _on_ai_died)	
 	
+	ai.set_asteroids(asteroids)
 	for asteroid in asteroids.get_children():
 		asteroid.connect("exploded", _on_asteroid_exploded)
 

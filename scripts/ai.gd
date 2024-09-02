@@ -13,10 +13,24 @@ signal died
 
 var laser_scene = preload("res://scenes/laser_ai.tscn")
 
-var shoot_cd = false
-var rate_of_fire = 0.15
+var rate_of_fire := 0.15
+var shoot_cd := false
+var alive : = true
 
-var alive := true
+var asteroids
+
+func set_asteroids(the_asteroids):
+	asteroids = the_asteroids
+	
+func avoid_asteroids():
+	for asteroid in asteroids.get_children():
+		match asteroid.size:
+			Asteroid.AsteroidSize.LARGE:
+				print(asteroid.position.x, " : ", asteroid.position.y)
+			Asteroid.AsteroidSize.MEDIUM:
+				print(asteroid.position.x, " : ", asteroid.position.y)
+			Asteroid.AsteroidSize.SMALL:
+				print(asteroid.position.x, " : ", asteroid.position.y)
 
 func _process(delta):
 	if !alive: return
@@ -30,6 +44,8 @@ func _process(delta):
 
 func _physics_process(delta):
 	if !alive: return
+	
+	avoid_asteroids()
 	
 	var input_vector := Vector2(0, Input.get_axis("enemy_move_forward", "enemy_move_backward"))
 	
