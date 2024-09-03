@@ -1,12 +1,13 @@
 class_name Asteroid extends Area2D
 
+@onready var collision_mesh = $AICollisionMesh
+
 signal exploded(pos, size, points)
 
 enum AsteroidSize{LARGE, MEDIUM, SMALL}
 @export var size := AsteroidSize.LARGE
-
-var movement_vector := Vector2(0, -1)
-var speed := 200
+@export var movement_vector := Vector2(0, -1)
+@export var speed := -1 # not yet set
 
 @onready var sprite = $Sprite2D
 @onready var cshape = $CollisionShape2D
@@ -25,7 +26,6 @@ var points: int:
 
 func _ready():
 	rotation = randf_range(0, 2*PI)
-	
 	match size:
 		AsteroidSize.LARGE:
 			speed = randf_range(50, 100)
@@ -40,10 +40,13 @@ func _ready():
 			sprite.texture = preload("res://assets/textures/meteorGrey_tiny1.png")
 			cshape.set_deferred("shape", preload("res://resources/asteroid_cshape_small.tres"))
 
+	collision_mesh.update_mesh(sprite.texture.get_width(), cshape.shape.radius, speed, rotation)
+
 func _physics_process(delta):
 	global_position += movement_vector.rotated(rotation) * speed * delta
 	
 	var radius = cshape.shape.radius
+	print("\nradius = ", radius)
 	var screen_size = get_viewport_rect().size
 	if (global_position.y+radius) < 0:
 		global_position.y = (screen_size.y+radius)

@@ -24,14 +24,16 @@ func set_asteroids(the_asteroids):
 	
 func avoid_asteroids():
 	for asteroid in asteroids.get_children():
-		match asteroid.size:
-			Asteroid.AsteroidSize.LARGE:
-				print(asteroid.position.x, " : ", asteroid.position.y)
-			Asteroid.AsteroidSize.MEDIUM:
-				print(asteroid.position.x, " : ", asteroid.position.y)
-			Asteroid.AsteroidSize.SMALL:
-				print(asteroid.position.x, " : ", asteroid.position.y)
+		var a_position = asteroid.position
+		var a_rotation = asteroid.rotation
+		var a_movement_vector = asteroid.movement_vector
+		var a_radius = asteroid.cshape.shape.radius
+		var a_speed = asteroid.speed
 
+func avoid_asteroid(collision_rect2d):
+	#collision_rect2d = Rect2(Vector2(-radius/2,0),Vector2(radius, -speed*2))
+	print("avoiding")
+		
 func _process(delta):
 	if !alive: return
 	

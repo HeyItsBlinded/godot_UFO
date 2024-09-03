@@ -14,6 +14,8 @@ extends Node2D
 
 var asteroid_scene = preload("res://scenes/asteroid.tscn")
 
+var initial_asteroid_count = 1
+
 var score := 0:
 	set(value):
 		score = value
@@ -40,9 +42,17 @@ func _ready():
 	ai.connect("laser_shot", _on_laser_shot)
 	ai.connect("died", _on_ai_died)	
 	
+	# Create additional asteroids up to max count
+	var asteroid_0 = asteroids.get_children()[0]
+	asteroid_0.connect("exploded", _on_asteroid_exploded)
+	var asteroid_radius = asteroid_0.cshape.shape.radius
+	for i in range(initial_asteroid_count - 1):
+		var screen_size = get_viewport_rect().size
+		var x = randf_range(asteroid_radius, screen_size.x-asteroid_radius)
+		var y = randf_range(asteroid_radius, screen_size.y-asteroid_radius)
+		spawn_asteroid(Vector2(x, y), Asteroid.AsteroidSize.LARGE)
+		
 	ai.set_asteroids(asteroids)
-	for asteroid in asteroids.get_children():
-		asteroid.connect("exploded", _on_asteroid_exploded)
 
 func _process(delta):
 	if Input.is_action_just_pressed("reset"):
@@ -62,7 +72,9 @@ func _on_asteroid_exploded(pos, size, points):
 			Asteroid.AsteroidSize.MEDIUM:
 				spawn_asteroid(pos, Asteroid.AsteroidSize.SMALL)
 			Asteroid.AsteroidSize.SMALL:
-				pass
+				var asteroid_count = asteroids.get_children().size()
+				game_over_screen.visible = (asteroid_count == 1) # last asteroid still present when called 
+
 
 func spawn_asteroid(pos, size):
 	var a = asteroid_scene.instantiate()

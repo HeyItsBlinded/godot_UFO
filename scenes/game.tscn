@@ -84,18 +84,6 @@ preprocess = 280.0
 [node name="Asteroid" parent="Asteroids" instance=ExtResource("3_6btt6")]
 position = Vector2(396, 244)
 
-[node name="Asteroid2" parent="Asteroids" instance=ExtResource("3_6btt6")]
-position = Vector2(987, 111)
-
-[node name="Asteroid3" parent="Asteroids" instance=ExtResource("3_6btt6")]
-position = Vector2(1033, 445)
-
-[node name="Asteroid4" parent="Asteroids" instance=ExtResource("3_6btt6")]
-position = Vector2(263, 615)
-
-[node name="Asteroid5" parent="Asteroids" instance=ExtResource("3_6btt6")]
-position = Vector2(143, 107)
-
 [node name="PlayerSpawnPos" type="Node2D" parent="."]
 position = Vector2(640, 360)
 
